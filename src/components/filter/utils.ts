@@ -1,4 +1,4 @@
-import { START_YEARS } from "@/src/constants/constants";
+import { START_YEARS } from '@/src/constants/constants';
 
 export const getYearsFromToCurrent = (): number[] => {
   const currentYear = new Date().getFullYear();
