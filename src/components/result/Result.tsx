@@ -1,5 +1,5 @@
 import React from 'react';
-import { Title } from './Title';
+import { Title } from '../title/Title';
 import { Error } from '../error/Error';
 
 type IResultProps = {
