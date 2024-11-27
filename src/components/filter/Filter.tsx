@@ -1,11 +1,11 @@
 'use client';
 import { VehicleMake } from '@/src/app/actions';
 import React, { useState } from 'react';
-import { Select, Option } from '@material-tailwind/react';
 import { getYearsFromToCurrent } from './utils';
 import { Title } from '../title/Title';
 import { Button } from '../button/Button';
-import { Dropdown } from '../dropdown/Dropdown';
+import { Dropdown, Option } from '../dropdown/Dropdown';
+import { Error } from '../error/Error';
 
 type Props = {
   options: VehicleMake[];
@@ -16,9 +16,14 @@ export const Filter = ({ options, isLoaded }: Props) => {
   const [vehicleMakes, setVehicleMakes] = useState<string>();
   const [year, setYear] = useState<string>();
 
-  const formattedOptions = options.map((option) => option?.MakeName);
+  const formattedOptions: Option[] = options.map((option) => {
+    return {
+      label: option?.MakeName,
+      value: option?.MakeId,
+    };
+  });
 
-  const years = getYearsFromToCurrent();
+  const years: Option[] = getYearsFromToCurrent();
 
   return (
     <div className="flex flex-col gap-12">
@@ -32,13 +37,11 @@ export const Filter = ({ options, isLoaded }: Props) => {
             onChange={(val) => setVehicleMakes(val)}
           />
         ) : (
-          <p className="text-red-800">
-            The error occurred while loading options
-          </p>
+          <Error text="The error occurred while loading data" />
         )}
         <Dropdown
-          label="Model Years"
-          options={years.map(String)}
+          label="Model Year"
+          options={years}
           onChange={(val) => setYear(val)}
         />
       </div>

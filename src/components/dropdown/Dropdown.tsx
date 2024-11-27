@@ -1,8 +1,13 @@
 import React from 'react';
 
+export interface Option {
+  label: string;
+  value: number;
+}
+
 type DropdownProps = {
   label: string;
-  options: string[];
+  options: Option[];
   onChange: (value: string) => void;
 };
 
@@ -11,13 +16,13 @@ export const Dropdown = ({ label, options, onChange }: DropdownProps) => {
     <div className="w-full">
       <label className="block text-sm font-medium text-gray-700">{label}</label>
       <select
-        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        className="mt-1 block w-full text-base border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500  rounded-lg p-4"
         onChange={(e) => onChange(e.target.value)}
       >
         <option value="">Select {label}</option>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
+        {options.map(({ label, value }) => (
+          <option key={value} value={value}>
+            {label}
           </option>
         ))}
       </select>

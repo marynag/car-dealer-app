@@ -34,3 +34,29 @@ export async function getVehicleMakes() {
     };
   }
 }
+
+export async function getVehicles(makeId: number, year: number) {
+  try {
+    const response = await fetch(
+      `${API_URL}/GetModelsForMakeIdYear/makeId/${makeId}/modelyear/${year}?format=json`
+    );
+    if (!response.ok) {
+      throw new Error('Failed to fetch vehicle makes');
+    }
+    const data = await response.json();
+
+    return {
+      data: data.Results ?? [],
+      success: true,
+    };
+  } catch (e: unknown) {
+    const errorMessage = e instanceof Error ? e.message : String(e);
+    console.error('Error fetching vehicle makes:', errorMessage);
+
+    return {
+      data: [],
+      success: false,
+      error: errorMessage,
+    };
+  }
+}

@@ -1,5 +1,5 @@
-import { Filter } from "../components/filter/Filter";
-import { getVehicleMakes } from "./actions";
+import { Filter } from '../components/filter/Filter';
+import { getVehicleMakes } from './actions';
 
 export default async function Home() {
   const { data, success } = await getVehicleMakes();
