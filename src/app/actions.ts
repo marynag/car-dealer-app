@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import { API_URL } from "../constants/constants";
+import { API_URL } from '../constants/constants';
 
 export interface VehicleMake {
   MakeId: number;
@@ -15,7 +15,7 @@ export async function getVehicleMakes() {
       `${API_URL}/GetMakesForVehicleType/car?format=json`
     );
     if (!response.ok) {
-      throw new Error("Failed to fetch vehicle makes");
+      throw new Error('Failed to fetch vehicle makes');
     }
     const data = await response.json();
 
@@ -25,7 +25,7 @@ export async function getVehicleMakes() {
     };
   } catch (e: unknown) {
     const errorMessage = e instanceof Error ? e.message : String(e);
-    console.error("Error fetching vehicle makes:", errorMessage);
+    console.error('Error fetching vehicle makes:', errorMessage);
 
     return {
       data: [],
