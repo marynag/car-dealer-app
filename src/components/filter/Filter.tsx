@@ -1,8 +1,11 @@
-"use client";
-import { VehicleMake } from "@/src/app/actions";
-import React, { useState } from "react";
-import { Select, Option } from "@material-tailwind/react";
-import { getYearsFromToCurrent } from "./utils";
+'use client';
+import { VehicleMake } from '@/src/app/actions';
+import React, { useState } from 'react';
+import { Select, Option } from '@material-tailwind/react';
+import { getYearsFromToCurrent } from './utils';
+import { Title } from '../title/Title';
+import { Button } from '../button/Button';
+import { Dropdown } from '../dropdown/Dropdown';
 
 type Props = {
   options: VehicleMake[];
@@ -19,41 +22,27 @@ export const Filter = ({ options, isLoaded }: Props) => {
 
   return (
     <div className="flex flex-col gap-12">
+      <Title text="Find your vehicle" />
 
       <div className="flex md:flex-row gap-8 flex-col w-full md:p-10">
         {isLoaded && options.length ? (
-          <Select
-            size="md"
-            label="Select Vehicle Makes"
+          <Dropdown
+            label="Vehicle Makes"
+            options={formattedOptions}
             onChange={(val) => setVehicleMakes(val)}
-            animate={{
-              mount: { y: 0 },
-              unmount: { y: 25 },
-            }}
-          >
-            {formattedOptions.map((option) => (
-              <Option key={option}>{option}</Option>
-            ))}
-          </Select>
+          />
         ) : (
           <p className="text-red-800">
             The error occurred while loading options
           </p>
         )}
-        <Select
-          size="lg"
-          label="Select Model Years"
+        <Dropdown
+          label="Model Years"
+          options={years.map(String)}
           onChange={(val) => setYear(val)}
-          animate={{
-            mount: { y: 0 },
-            unmount: { y: 25 },
-          }}
-        >
-          {years.map((option) => (
-            <Option key={option}>{option}</Option>
-          ))}
-        </Select>
+        />
       </div>
+      <Button vehicleMakes={vehicleMakes} year={year} />
     </div>
   );
 };
