@@ -1,5 +1,6 @@
 import React from 'react';
 import { Title } from './Title';
+import { Error } from '../error/Error';
 
 type IResultProps = {
   data: any[];
@@ -22,7 +23,7 @@ export const Result = ({ data, success }: IResultProps) => {
           ))}
         </div>
       ) : (
-        <p>Failed to fetch models</p>
+        <Error text="The error occurred while loading data" />
       )}
     </div>
   );

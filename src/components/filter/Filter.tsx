@@ -5,6 +5,7 @@ import { getYearsFromToCurrent } from './utils';
 import { Title } from '../title/Title';
 import { Button } from '../button/Button';
 import { Dropdown, Option } from '../dropdown/Dropdown';
+import { Error } from '../error/Error';
 
 type Props = {
   options: VehicleMake[];
@@ -36,9 +37,7 @@ export const Filter = ({ options, isLoaded }: Props) => {
             onChange={(val) => setVehicleMakes(val)}
           />
         ) : (
-          <p className="text-red-800">
-            The error occurred while loading options
-          </p>
+          <Error text="The error occurred while loading data" />
         )}
         <Dropdown
           label="Model Year"
