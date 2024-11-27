@@ -2,8 +2,7 @@ import { getVehicleMakes, getVehicles } from '@/src/app/actions';
 import { getYearsFromToCurrent } from '@/src/components/filter/utils';
 import { Loading } from '@/src/components/loading/Loading';
 import { Result } from '@/src/components/title/Result';
-import { API_URL } from '@/src/constants/constants';
-import { get } from 'http';
+
 import { Suspense } from 'react';
 interface PageProps {
   params: IParams;
